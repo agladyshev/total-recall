@@ -1,14 +1,24 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Deck from './components/Deck'
 import DeckList from './components/DeckList'
+import Deck from './components/Deck'
+import Quiz from './components/Quiz'
+import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
+import EditCard from './components/EditCard'
+import CardList from './components/CardList'
 import { StackNavigator } from 'react-navigation'
+import { purple, white } from './utils/colors'
 
 const Stack = StackNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Total Recall',
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
     },
   },
   Deck: {
@@ -16,7 +26,41 @@ const Stack = StackNavigator({
     navigationOptions: {
       tabBarLabel: 'Deck view',
     },
+    headerTintColor: white,
+    headerStyle: {
+      backgroundColor: purple,
+    }
   },
+  Quiz : {
+    screen: Quiz,
+    navigationOptions: {
+      tabBarLabel: 'Quiz',
+    }
+  },
+  AddDeck : {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add new deck',
+    }
+  },
+  AddCard : {
+    screen: AddCard,
+    navigationOptions: {
+      tabBarLabel: 'Add new card',
+    }
+  },
+  EditCard : {
+    screen: EditCard,
+    navigationOptions: {
+      tabBarLabel: 'Edit card',
+    }
+  },
+  CardList : {
+    screen: CardList,
+    navigationOptions: {
+      tabBarLabel: 'All deck cards',
+    }
+  }
 })
 
 export default class App extends React.Component {

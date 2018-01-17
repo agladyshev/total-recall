@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-
 export default function DeckList ({ navigation }) {
   return (
     <View>
