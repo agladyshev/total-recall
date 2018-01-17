@@ -1,28 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-
-const Home = ({ navigation }) => (
-  <View>
-    <Text>This is the Home view</Text>
-    <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
-      <Text>Press here for the Deck</Text>
-    </TouchableOpacity>
-  </View>
-)
-
-const Deck = () => (
-  <View>
-    <Text>This is the Deck</Text>
-  </View>
-)
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import Deck from './components/Deck'
+import DeckList from './components/DeckList'
+import { StackNavigator } from 'react-navigation'
 
 const Stack = StackNavigator({
-  Home: {
-    screen: Home
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Total Recall',
+    },
   },
   Deck: {
-    screen: Deck
+    screen: Deck,
+    navigationOptions: {
+      tabBarLabel: 'Deck view',
+    },
   },
 })
 
