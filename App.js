@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, View } from 'react-native'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
@@ -8,74 +8,86 @@ import AddCard from './components/AddCard'
 import EditCard from './components/EditCard'
 import CardList from './components/CardList'
 import { StackNavigator } from 'react-navigation'
-import { purple, white } from './utils/colors'
+
+// import { purple, white } from './utils/colors'
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 const Stack = StackNavigator({
   DeckList: {
     screen: DeckList,
-    navigationOptions: {
-      tabBarLabel: 'Total Recall',
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      }
-    },
+    // navigationOptions: {
+    //   tabBarLabel: 'Total Recall',
+    //   headerTintColor: white,
+    //   headerStyle: {
+    //     backgroundColor: purple
+    //   }
+    // }
   },
   Deck: {
     screen: Deck,
-    navigationOptions: {
-      tabBarLabel: 'Deck view',
-    },
-    headerTintColor: white,
-    headerStyle: {
-      backgroundColor: purple,
-    }
+    // navigationOptions: {
+    //   tabBarLabel: 'Deck view'
+    // },
+    // headerTintColor: white,
+    // headerStyle: {
+    //   backgroundColor: purple
+    // }
   },
-  Quiz : {
+  Quiz: {
     screen: Quiz,
     navigationOptions: {
-      tabBarLabel: 'Quiz',
+      tabBarLabel: 'Quiz'
     }
   },
-  AddDeck : {
+  AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: 'Add new deck',
+      tabBarLabel: 'Add new deck'
     }
   },
-  AddCard : {
+  AddCard: {
     screen: AddCard,
     navigationOptions: {
-      tabBarLabel: 'Add new card',
+      tabBarLabel: 'Add new card'
     }
   },
-  EditCard : {
+  EditCard: {
     screen: EditCard,
     navigationOptions: {
-      tabBarLabel: 'Edit card',
+      tabBarLabel: 'Edit card'
     }
   },
-  CardList : {
+  CardList: {
     screen: CardList,
     navigationOptions: {
-      tabBarLabel: 'All deck cards',
+      tabBarLabel: 'All deck cards'
     }
   }
+}, {
+  initialRouteName: 'DeckList',
+  headerMode: Platform.OS === 'ios' ? 'float' : 'screen'
 })
 
 export default class App extends React.Component {
   render() {
     return (
-      <Stack />
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <Stack />
+        </View>
+      </Provider>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   }
+// })
